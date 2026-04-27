@@ -24,11 +24,12 @@ def checkHands(frame, rgb):
 
             hand_landmarks_list = getHandData(landmarks)
 
-            if label == "Left" and keyboard.is_pressed(1):
-            # if label == "Left" and keyboard.is_pressed(18):
-                addHandData(hand_landmarks_list)
+            if label == "Left":
+                if keyboard.is_pressed("1"):
+                # if label == "Left" and keyboard.is_pressed(18):
+                    addHandData(hand_landmarks_list)
     
-            displayCurrentGesture(hand_landmarks_list,frame)
+                displayCurrentGesture(hand_landmarks_list,frame)
 
 
 def getHandData(hand_landmarks):
