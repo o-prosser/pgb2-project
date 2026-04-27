@@ -7,8 +7,8 @@ from sklearn.metrics import accuracy_score
 
 landmark_df = p.read_csv("hand_landmark_data.csv")
 
-X = landmark_df.drop('lead', axis=1)
-Y = landmark_df['lead']
+X = landmark_df.drop('one', axis=1)
+Y = landmark_df['one']
 
 X_train, X_test, Y_train, y_test = train_test_split(X, Y, test_size=0.2,random_state=42)
 

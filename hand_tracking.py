@@ -24,7 +24,8 @@ def checkHands(frame, rgb):
 
             hand_landmarks_list = getHandData(landmarks)
 
-            if label == "Left" and keyboard.is_pressed("1"):
+            if label == "Left" and keyboard.is_pressed(1):
+            # if label == "Left" and keyboard.is_pressed(18):
                 addHandData(hand_landmarks_list)
     
             displayCurrentGesture(hand_landmarks_list,frame)
@@ -41,7 +42,7 @@ def addHandData(hand_landmarks_list):
     print("scanning!!!!")
     with open("hand_landmark_data.csv","a",newline="") as file:
         hand_writer = csv.writer(file)
-        hand_writer.writerow(["second"] + hand_landmarks_list)
+        hand_writer.writerow(["zero"] + hand_landmarks_list)
 
 def displayCurrentGesture(hand_landmarks_list,frame):
     landmarks_df = p.DataFrame([hand_landmarks_list])
