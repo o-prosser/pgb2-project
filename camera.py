@@ -2,10 +2,6 @@ import cv2 as c
 import hand_tracking as ht
 
 def startCapture(cam):
-
-    frame_width = cam.get(c.CAP_PROP_FRAME_WIDTH)
-    frame_height = cam.get(c.CAP_PROP_FRAME_HEIGHT)
-
     while True:
         x,frame = cam.read()
         frame = c.flip(frame, 1)
@@ -13,7 +9,7 @@ def startCapture(cam):
             break
 
         rgb = c.cvtColor(frame,c.COLOR_BGR2RGB)
-        ht.checkHands(frame,rgb,frame_width,frame_height)
+        ht.checkHands(frame,rgb)
 
         c.imshow("Hand",frame)
 
