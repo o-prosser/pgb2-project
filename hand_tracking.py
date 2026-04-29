@@ -17,9 +17,10 @@ hands = mp_hands.Hands(max_num_hands=2)
 mp_draw = mp.solutions.drawing_utils
 
 draw_points = []
+gesture_l,gesture_r = None,None
 
 def checkHands(frame, rgb):
-    global draw_points
+    global draw_points,gesture_l,gesture_r
 
     results = hands.process(rgb)
 
@@ -38,9 +39,6 @@ def checkHands(frame, rgb):
     
                 gesture_l = displayCurrentGesture(hand_landmarks_list,frame,handedness)
 
-                if gesture_l == "zero":
-                    draw_points = draw.removeCanvas()
-
             if handedness == "Right":
                 if keyboard.is_pressed("2"):
                 # if keyboard.is_pressed(19):
@@ -48,10 +46,11 @@ def checkHands(frame, rgb):
     
                 gesture_r = displayCurrentGesture(hand_landmarks_list,frame,handedness)
 
-                draw_points = draw.checkDraw(frame,gesture_r,landmarks.landmark[8],draw_points)
+                if (gesture_l and gesture_r):
+                    draw_points = draw.handleDraw(frame,gesture_l,gesture_r,landmarks.landmark[8],draw_points)
+
+
                 
-
-
 def getHandData(hand_landmarks):
     hand_landmarks_list=[]
     for lm in hand_landmarks.landmark:
